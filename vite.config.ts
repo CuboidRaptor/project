@@ -11,11 +11,7 @@ export default defineConfig({
           src: 'public/manifest.json',
           dest: '.',
         }
-       ,
-        {
-          src: 'src/content.js',
-          dest: '.',
-        }
+        // content.js will be built as a proper entry (bundled) instead of copied raw
       ],
     }),
   ],
@@ -25,10 +21,14 @@ export default defineConfig({
       input: {
         main: './index.html',
         background: './src/background.ts',
+        // bundle the content script so imports (like @mozilla/readability) are resolved
+        content: './src/content.js',
       },
       output: {
         entryFileNames: (chunkInfo) => {
-          return chunkInfo.name === 'background' ? 'background.js' : 'assets/[name]-[hash].js';
+          if (chunkInfo.name === 'background') return 'background.js';
+          if (chunkInfo.name === 'content') return 'content.js';
+          return 'assets/[name]-[hash].js';
         },
       },
     },
