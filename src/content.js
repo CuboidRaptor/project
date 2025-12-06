@@ -58,12 +58,6 @@ function speakText(text, opts = {}) {
     window.speechSynthesis.speak(utterance);
 }
 
-// // Example: speak the Readability article already parsed in your content script
-// if (typeof article !== 'undefined' && article) {
-//     const snippet = article.textContent ? article.textContent.slice(0, 400) : article.content || article.title || 'No article';
-//     speakText(`${article.title || 'Article'}: ${snippet}`, { lang: 'en-US', rate: 1, voiceName: 'Google' });
-// }
-
 // run extraction (or call this on user action)
 const article = extractReadableArticle();
 
