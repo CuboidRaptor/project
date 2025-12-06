@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "React Chrome Extension",
+    "version": "1.0.0",
+    "description": "A simple React app as a Chrome extension",
+    "action": {
+      "default_popup": "index.html"
+    },
+    "background": {
+      "service_worker": "background.js"
+    },
+    "permissions": [
+      "scripting",
+      "activeTab"
+    ],
+    "commands": {
+      "run-script": {
+        "suggested_key": {
+          "default": "Alt+R"
+        },
+        "description": "Run content script (Alt+R)"
+      }
+    }
+  }
